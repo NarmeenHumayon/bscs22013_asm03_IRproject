@@ -1,0 +1,9 @@
+numpy
+scipy
+scikit-learn
+pandas
+nltk
+rank-bm25
+joblib
+tqdm
+matplotlib

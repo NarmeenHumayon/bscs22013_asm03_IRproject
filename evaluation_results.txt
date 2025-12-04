@@ -1,0 +1,9 @@
+=== Evaluation Report ===
+Query: karachi
+Search Mode: 3
+Retrieved (count=10): [1261, 251, 0, 1165, 1253, 156, 143, 336, 1552, 221]
+Relevant (count=22): [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 336, 1165, 1253, 1552]
+TP = 5, FP = 5, FN = 17
+Precision = 0.5000
+Recall    = 0.2273
+F1 Score  = 0.3125
