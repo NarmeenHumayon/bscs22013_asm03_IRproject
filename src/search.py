@@ -6,7 +6,6 @@ import numpy as np
 import re
 from preprocess import preprocess_text
 
-# --- Paths ---
 BOOLEAN_INDEX_PKL = "models/boolean_index.pkl"
 POSITIONAL_INDEX_PKL = "models/positional_index.pkl"
 TFIDF_BM25_PKL = "models/tfidf_bm25_index.pkl"
@@ -14,7 +13,6 @@ VECTOR_PICKLE = "models/vectorizer.pkl"
 DOCS_FILE = "data/docs.pkl"
 OUTPUT_FILE = "search_results.txt"
 
-# --- Load functions ---
 def load_boolean_index():
     with open(BOOLEAN_INDEX_PKL, "rb") as f:
         return pickle.load(f)
@@ -35,21 +33,16 @@ def load_docs():
     with open(DOCS_FILE, "rb") as f:
         return pickle.load(f)
 
-# --- BOOLEAN SEARCH (supports AND / OR) ---
+# booelaan search AND, OR, NOT 
 def boolean_search(query, boolean_index):
-    """
-    Query examples:
-        'karachi AND sindh'   -> intersection
-        'karachi OR sindh'    -> union
-        'karachi'             -> single term
-    """
-    # Convert to lowercase and split by spaces
+    
+    # convert searchquery   to lowercase and split by spaces
     tokens = query.lower().split()
     if not tokens:
         return set()
 
     result_docs = set()
-    current_op = "AND"  # default operator
+    current_op = "AND"
     temp_docs = None
 
     for token in tokens:
@@ -70,7 +63,6 @@ def boolean_search(query, boolean_index):
     return result_docs
 
 
-# --- POSITIONAL / PHRASE SEARCH ---
 def positional_search(query, positional_index):
     terms = preprocess_text(query)
     if not terms:
@@ -91,13 +83,9 @@ def positional_search(query, positional_index):
                 break
     return result_docs
 
-# --- PROXIMITY SEARCH / EXTENDED POS SEARCH ---
+# proximity seaech e.g. karachi /3 sindh, karachi sindh etc
 def positional_proximity_search(query, positional_index):
-    """
-    Supports:
-      'term1 term2'      -> exact phrase
-      'term1 /k term2'   -> term1 within k words of term2
-    """
+
     query = query.lower()
     prox_match = re.match(r"(\w+)\s*/(\d+)\s*(\w+)", query)
     if prox_match:
