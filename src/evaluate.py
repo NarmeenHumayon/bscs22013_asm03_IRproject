@@ -85,7 +85,7 @@ def manual_evaluation():
     precision, recall, f1, tp, fp, fn = compute_metrics(retrieved, relevant_docs)
 
     output = []
-    output.append("=== Evaluation Report ===")
+    output.append("=== Here is Evaluation Report ===")
     output.append(f"Query: {query}")
     output.append(f"Search Mode: {search_mode}")
     output.append(f"Retrieved (count={len(retrieved)}): {retrieved}")
@@ -101,9 +101,9 @@ def manual_evaluation():
 
 if __name__ == "__main__":
     print("\n=== IR System Evaluation ===")
-    print("1 - Manual Relevance Judgments (recommended)")
-    mode = input("Enter choice: ").strip()
+    print("1 - Manual Relevance Judgments (tjhis is implemented only")
+    mode = input("Enter your choice: ").strip()
     if mode == "1":
         manual_evaluation()
     else:
-        print("Invalid choice.")
+        print("Invalid choice!!")
