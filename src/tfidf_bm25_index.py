@@ -44,7 +44,7 @@ def build_bm25(tfidf_matrix, vectorizer, docs):
             tf_ij = tf[i, j]
             idf_j = idf[j]
             len_d = doc_lengths[i]
-            bm25_matrix[i, j] = idf_j * ((tf_ij * (k1 + 1)) / (tf_ij + k1 * (1 - b + b * (len_d / avg_doc_len))))
+            bm25_matrix[i, j] = idf_j*((tf_ij*(k1+1))/(tf_ij+k1*(1-b+b*(len_d/avg_doc_len))))
     
     return bm25_matrix
 
@@ -73,7 +73,7 @@ def save_models(tfidf_matrix, bm25_matrix, vectorizer, output_pkl=OUTPUT_PKL, ve
     print(f"tf-idf +bm25 is saved as pickle: {output_pkl}")
     print(f"Vectorizer is  saved as pickle: {vector_pickle}")
     print(f"Vocabulary is saved as pickle: {vocab_pickle}")
-    print(f"TF-IDF + BM25 JSON saved: {json_file}")
+    print(f"TF-IDF & BM25 JSON saved: {json_file}")
 
 if __name__ == "__main__":
     with open(DOCS_FILE, "rb") as f:
