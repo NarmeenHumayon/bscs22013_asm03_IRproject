@@ -8,14 +8,12 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-
 nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
 STOP = set(stopwords.words('english'))
 LEMMATIZER = WordNetLemmatizer()
-
 def normalize_text(text: str) -> str:
     text = text.lower()
     text = re.sub(r'http\S+', ' ', text)
@@ -37,14 +35,12 @@ def save_jsonl(items, out_path):
     with p.open('w', encoding='utf8') as fh:
         for it in items:
             fh.write(json.dumps(it, ensure_ascii=False) + '\n')
-
 def load_jsonl(path):
     lst = []
     with open(path,'r',encoding='utf8') as fh:
         for line in fh:
             lst.append(json.loads(line))
     return lst
-
 def precision_recall_f1(retrieved_docs, relevant_docs):
     retrieved_docs = set(retrieved_docs)
     relevant_docs = set(relevant_docs)
